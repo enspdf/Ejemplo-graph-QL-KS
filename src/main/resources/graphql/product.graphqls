@@ -1,0 +1,28 @@
+type Product {
+    id: ID!,
+    description: String!,
+    boxes: Int!,
+    bunches: Int!,
+    stemsBunch: Int!,
+    unitCost: Float!
+}
+
+input ProductInput {
+    description: String!,
+    boxes: Int!,
+    bunches: Int!,
+    stemsBunch: Int!,
+    unitCost: Float!
+}
+
+type Query {
+    getAllProducts: [Product]!,
+    countAllProducts: Long!
+    getProductById(id: ID!): Product!
+}
+
+type Mutation {
+    # createProduct(input: ProductInput): Product!
+    # updateProduct(id: ID!, input: ProductInput): Product!
+    deleteProduct(id: ID!): Boolean
+}
