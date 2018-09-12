@@ -12,4 +12,8 @@ public interface ProductDao {
     Product getProductById(Long id);
 
     boolean deleteProduct(Long id);
+
+    Long createProduct(Product product);
+
+    Product updateProduct(Long id, Product product);
 }

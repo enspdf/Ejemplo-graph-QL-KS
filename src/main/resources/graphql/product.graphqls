@@ -1,28 +1,49 @@
+# Type that describes the Product structure
 type Product {
+    # Id of the product
     id: ID!,
+    # Description of the product
     description: String!,
+    # Boxes of the product
     boxes: Int!,
+    # Bunches of the product
     bunches: Int!,
+    # Stems/Bunch of the product
     stemsBunch: Int!,
+    # Unit Cost of the product
     unitCost: Float!
 }
 
+# Input that describes the Product Input structure
 input ProductInput {
+    # Description of the product
     description: String!,
+    # Boxes of the product
     boxes: Int!,
+    # Bunches of the product
     bunches: Int!,
+    # Stems/Bunch of the product
     stemsBunch: Int!,
+    # Unit Cost of the product
     unitCost: Float!
 }
 
+# Type of Query that describes and show available methods to get data
 type Query {
+    # Method that returns a list of available products
     getAllProducts: [Product]!,
+    # Method that count all the available products
     countAllProducts: Long!
+    # Method that return an available product
     getProductById(id: ID!): Product!
 }
 
+# Mutation type that describes and show available methods to mutate data
 type Mutation {
-    # createProduct(input: ProductInput): Product!
-    # updateProduct(id: ID!, input: ProductInput): Product!
+    # Method that create a product and return it
+    createProduct(input: ProductInput): Product!
+    # Method that takes a product and update it
+    updateProduct(id: ID!, input: ProductInput): Product!
+    # Method that takes an id of a product and delete it
     deleteProduct(id: ID!): Boolean
 }

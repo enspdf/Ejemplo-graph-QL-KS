@@ -1,4 +1,4 @@
-package me.shackox.graphql.demographql.resolver;
+package me.shackox.graphql.demographql.resolver.product;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import me.shackox.graphql.demographql.domain.Product;

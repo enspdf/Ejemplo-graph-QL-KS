@@ -4,8 +4,8 @@ import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.servlet.GraphQLErrorHandler;
 import me.shackox.graphql.demographql.handler.GraphQLErrorAdapter;
-import me.shackox.graphql.demographql.resolver.Mutation;
-import me.shackox.graphql.demographql.resolver.Query;
+import me.shackox.graphql.demographql.resolver.product.Mutation;
+import me.shackox.graphql.demographql.resolver.product.Query;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
