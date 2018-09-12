@@ -15,5 +15,5 @@ public interface ProductDao {
 
     Long createProduct(Product product);
 
-    Product updateProduct(Long id, Product product);
+    void updateProduct(Long id, Product product);
 }

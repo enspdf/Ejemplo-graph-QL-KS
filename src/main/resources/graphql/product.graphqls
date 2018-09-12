@@ -17,15 +17,15 @@ type Product {
 # Input that describes the Product Input structure
 input ProductInput {
     # Description of the product
-    description: String!,
+    description: String,
     # Boxes of the product
-    boxes: Int!,
+    boxes: Int,
     # Bunches of the product
-    bunches: Int!,
+    bunches: Int,
     # Stems/Bunch of the product
-    stemsBunch: Int!,
+    stemsBunch: Int,
     # Unit Cost of the product
-    unitCost: Float!
+    unitCost: Float
 }
 
 # Type of Query that describes and show available methods to get data

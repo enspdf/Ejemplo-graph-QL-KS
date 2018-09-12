@@ -124,7 +124,25 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     @Transactional
-    public Product updateProduct(Long id, Product product) {
-        return null;
+    public void updateProduct(Long id, Product product) {
+        StringBuilder strQuery = new StringBuilder();
+        strQuery.append(" UPDATE ");
+        strQuery.append(" tblProduct SET ");
+        strQuery.append(" description = :description, ");
+        strQuery.append(" boxes = :boxes, ");
+        strQuery.append(" bunches = :bunches, ");
+        strQuery.append(" stemsBunch = :stemsBunch, ");
+        strQuery.append(" unitCost = :unitCost ");
+        strQuery.append(" WHERE id = :id ");
+
+        NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
+        query.setParameter("description", product.getDescription());
+        query.setParameter("boxes", product.getBoxes());
+        query.setParameter("bunches", product.getBunches());
+        query.setParameter("stemsBunch", product.getStemsBunch());
+        query.setParameter("unitCost", product.getUnitCost());
+        query.setParameter("id", id);
+
+        query.executeUpdate();
     }
 }
