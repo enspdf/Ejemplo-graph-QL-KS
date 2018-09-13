@@ -1,34 +1,11 @@
 package me.shackox.graphql.demographql.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "tblProduct")
 public class Product {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "boxes")
     private Integer boxes;
-
-    @Column(name = "bunches")
     private Integer bunches;
-
-    @Column(name = "stemsBunch")
     private Integer stemsBunch;
-
-    @Column(name = "unitCost")
     private Double unitCost;
 
     public Product() {

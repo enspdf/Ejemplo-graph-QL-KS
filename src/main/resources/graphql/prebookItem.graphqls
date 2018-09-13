@@ -1,0 +1,43 @@
+# Type that describes the PrebookItem structure
+type PrebookItem {
+    # Id of the PrebookItem
+    id: ID!,
+    # The code of the vendor
+    vendorCode: String!,
+    # Id of the product
+    productId: ID!,
+    # The Box Type
+    boxType: String!,
+    # The Unit Type
+    unitType: String!,
+    # Mark Code of the line
+    markCode: String,
+    # Price of the product
+    unitPrice: Float!
+}
+
+# Input that describes the Prebook Input structure
+input PrebookItemInput {
+    # The code of the vendor
+    vendorCode: String!,
+    # Id of the product
+    productId: ID!,
+    # The Box Type
+    boxType: String!,
+    # The Unit Type
+    unitType: String!,
+    # Mark Code of the line
+    markCode: String,
+    # Price of the product
+    unitPrice: Float!
+}
+
+# Type of Query that describes and show available methods to get data
+extend type Query {
+
+}
+
+# Mutation type that describes and show available methods to mutate data
+extend type Mutation {
+
+}

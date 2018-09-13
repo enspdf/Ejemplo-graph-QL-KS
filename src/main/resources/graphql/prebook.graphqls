@@ -1,0 +1,42 @@
+# Type that describes the Prebook structure
+type Prebook {
+    # Id of the Prebook
+    id: ID!,
+    # Name of the customer
+    customerName: String!,
+    # Name of the carrier
+    carrierName: String!,
+    # Customer PO Number
+    customerPoNumber: String,
+    # Ship Date of the prebook
+    shipDate: DateTime!,
+    # Content of items related to the Prebook
+    prebookItems: [PrebookItem]
+}
+
+# Input that describes the Prebook Input structure
+input PrebookInput {
+    # Name of the customer
+    customerName: String!,
+    # Name of the carrier
+    carrierName: String!,
+    # Customer PO Number
+    customerPoNumber: String,
+    # Ship Date of the prebook
+    shipDate: DateTime!,
+    # Content of items related to the Prebook
+    prebookItems: [PrebookItem]
+}
+
+# Type of Query that describes and show available methods to get data
+extend type Query {
+
+}
+
+# Mutation type that describes and show available methods to mutate data
+extend type Mutation {
+
+}
+
+# Defined scalar type to identify a date
+scalar DateTime
