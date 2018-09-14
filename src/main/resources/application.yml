@@ -16,7 +16,7 @@ datasource:
   driver: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost:3306/graphQLExample?autoReconnect=true&useSSL=false
   username: root
-  password: vertical601
+  password:
 
 # Hibernate Configuration
 hibernate:
@@ -32,6 +32,8 @@ hibernate:
 # Spring / H2 configuration
 spring:
   profiles: dev
+  liquibase:
+    change-log: classpath:liquibase/master.xml
   h2:
     console:
       enabled: true
@@ -55,7 +57,7 @@ datasource:
   driver: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost:3306/graphQLExample?autoReconnect=true&useSSL=false
   username: root
-  password: vertical601
+  password:
 
 # Hibernate Configuration
 hibernate:

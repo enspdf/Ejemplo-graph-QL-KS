@@ -30,7 +30,14 @@ input PrebookInput {
 
 # Type of Query that describes and show available methods to get data
 extend type Query {
-
+    # Method that returns a list of Prebooks created (Only Header)
+    allPrebooksHeader: [Prebook]!,
+    # Method that returns a list of Prebooks created (With details)
+    allPrebooksWithDetails: [Prebook]!,
+    # Method that count all the created Prebooks
+    countAllPrebooks: Long!,
+    # Method that returns an specific Prebook
+    getPrebookById(id: ID!): Prebook!
 }
 
 # Mutation type that describes and show available methods to mutate data
