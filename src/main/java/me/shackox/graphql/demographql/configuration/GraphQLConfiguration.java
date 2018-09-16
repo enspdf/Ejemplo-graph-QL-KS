@@ -1,11 +1,17 @@
 package me.shackox.graphql.demographql.configuration;
 
+import com.coxautodev.graphql.tools.SchemaParser;
+import com.zhokhov.graphql.datetime.GraphQLDate;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
+import graphql.schema.GraphQLSchema;
 import graphql.servlet.GraphQLErrorHandler;
 import me.shackox.graphql.demographql.handler.GraphQLErrorAdapter;
-import me.shackox.graphql.demographql.resolver.product.Mutation;
-import me.shackox.graphql.demographql.resolver.product.Query;
+import me.shackox.graphql.demographql.resolvers.Prebook.PrebookMutationResolver;
+import me.shackox.graphql.demographql.resolvers.Prebook.PrebookQueryResolver;
+import me.shackox.graphql.demographql.resolvers.Product.ProductMutationResolver;
+import me.shackox.graphql.demographql.resolvers.Product.ProductQueryResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,6 +21,18 @@ import java.util.stream.Collectors;
 
 @Configuration
 public class GraphQLConfiguration {
+    @Autowired
+    private ProductQueryResolver productQueryResolver;
+
+    @Autowired
+    private ProductMutationResolver productMutationResolver;
+
+    @Autowired
+    private PrebookQueryResolver prebookQueryResolver;
+
+    @Autowired
+    private PrebookMutationResolver prebookMutationResolver;
+
     @Bean
     public GraphQLErrorHandler errorHandler() {
         return new GraphQLErrorHandler() {
@@ -43,12 +61,35 @@ public class GraphQLConfiguration {
     }
 
     @Bean
-    public Query query() {
-        return new Query();
+    public GraphQLSchema graphQLSchema() {
+        return SchemaParser.newParser()
+                .files("graphql/product.graphqls", "graphql/prebook.graphqls", "graphql/prebookItem.graphqls")
+                .resolvers(
+                        productQueryResolver, productMutationResolver,
+                        prebookQueryResolver, prebookMutationResolver
+                )
+                .scalars(new GraphQLDate())
+                .build()
+                .makeExecutableSchema();
     }
 
     @Bean
-    public Mutation mutation() {
-        return new Mutation();
+    public ProductQueryResolver productQueryResolver() {
+        return new ProductQueryResolver();
+    }
+
+    @Bean
+    public ProductMutationResolver productMutationResolver() {
+        return new ProductMutationResolver();
+    }
+
+    @Bean
+    public PrebookQueryResolver prebookQueryResolver() {
+        return new PrebookQueryResolver();
+    }
+
+    @Bean
+    public PrebookMutationResolver prebookMutationResolver() {
+        return new PrebookMutationResolver();
     }
 }

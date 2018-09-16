@@ -38,6 +38,11 @@ spring:
     console:
       enabled: true
       path: /h2-console
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enable: false
 ---
 # Production Configuration
 

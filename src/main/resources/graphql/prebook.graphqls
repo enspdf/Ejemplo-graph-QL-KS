@@ -9,7 +9,7 @@ type Prebook {
     # Customer PO Number
     customerPoNumber: String,
     # Ship Date of the prebook
-    shipDate: DateTime!,
+    shipDate: Date!,
     # Content of items related to the Prebook
     prebookItems: [PrebookItem]
 }
@@ -46,4 +46,4 @@ extend type Mutation {
 }
 
 # Defined scalar type to identify a date
-scalar DateTime
+scalar Date
