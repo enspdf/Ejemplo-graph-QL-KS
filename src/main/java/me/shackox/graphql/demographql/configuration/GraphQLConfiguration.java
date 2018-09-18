@@ -14,6 +14,7 @@ import me.shackox.graphql.demographql.resolvers.Prebook.PrebookMutationResolver;
 import me.shackox.graphql.demographql.resolvers.Prebook.PrebookQueryResolver;
 import me.shackox.graphql.demographql.resolvers.Product.ProductMutationResolver;
 import me.shackox.graphql.demographql.resolvers.Product.ProductQueryResolver;
+import me.shackox.graphql.demographql.scalars.Scalars;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -71,7 +72,8 @@ public class GraphQLConfiguration {
                         productQueryResolver, productMutationResolver,
                         prebookQueryResolver, prebookMutationResolver
                 )
-                .scalars(new GraphQLDate(), new GraphQLLocalDate(), new GraphQLLocalDateTime(), new GraphQLLocalTime())
+                //.scalars(new GraphQLDate(), new GraphQLLocalDate(), new GraphQLLocalDateTime(), new GraphQLLocalTime())
+                .scalars(Scalars.graphQLDate)
                 .build()
                 .makeExecutableSchema();
     }

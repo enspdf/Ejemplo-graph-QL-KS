@@ -95,7 +95,7 @@ public class ProductDaoImpl implements ProductDao {
         query.setParameter("productId", id);
 
         int resultQuery = query.executeUpdate();
-        return resultQuery == 1 ? true : false;
+        return resultQuery == 1;
     }
 
     @Override
