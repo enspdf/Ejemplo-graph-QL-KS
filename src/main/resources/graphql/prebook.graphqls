@@ -23,9 +23,27 @@ input PrebookInput {
     # Customer PO Number
     customerPoNumber: String,
     # Ship Date of the prebook
-    shipDate: DateTime!,
+    shipDate: Date!
     # Content of items related to the Prebook
-    prebookItems: [PrebookItem]
+    prebookItems: [PrebookItemInput]
+}
+
+# Input that describes the Prebook Input structure
+input PrebookItemInput {
+    # Id of the parent Prebook
+    prebookId: ID!,
+    # The code of the vendor
+    vendorCode: String!,
+    # Id of the product
+    productId: ID!,
+    # The Box Type
+    boxType: String!,
+    # The Unit Type
+    unitType: String!,
+    # Mark Code of the line
+    markCode: String,
+    # Price of the product
+    unitPrice: Float!
 }
 
 # Type of Query that describes and show available methods to get data
@@ -42,8 +60,17 @@ extend type Query {
 
 # Mutation type that describes and show available methods to mutate data
 extend type Mutation {
-
+    # Method that obtains a Prebook header and create it
+    createPrebookHeader(input: PrebookInput): Prebook!,
+    # Method that obtains a Prebook header and items and create it
+    createPrebookWithItems(input: PrebookInput): Prebook!,
+    # Method that takes a prebook header and update it
+    updatePrebookHeader(id: ID!, input: PrebookInput): Prebook!,
+    # Method that takes a prebook with the items and update it
+    updatePrebookWithItems(id: ID!, input: PrebookInput): Prebook!,
+    # Method that takes an id of prebook and delete it (With items)
+    deletePrebook(id: ID!): Boolean
 }
 
-# Defined scalar type to identify a date
+# java.util.Date implementation
 scalar Date

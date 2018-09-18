@@ -2,6 +2,9 @@ package me.shackox.graphql.demographql.configuration;
 
 import com.coxautodev.graphql.tools.SchemaParser;
 import com.zhokhov.graphql.datetime.GraphQLDate;
+import com.zhokhov.graphql.datetime.GraphQLLocalDate;
+import com.zhokhov.graphql.datetime.GraphQLLocalDateTime;
+import com.zhokhov.graphql.datetime.GraphQLLocalTime;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.schema.GraphQLSchema;
@@ -68,7 +71,7 @@ public class GraphQLConfiguration {
                         productQueryResolver, productMutationResolver,
                         prebookQueryResolver, prebookMutationResolver
                 )
-                .scalars(new GraphQLDate())
+                .scalars(new GraphQLDate(), new GraphQLLocalDate(), new GraphQLLocalDateTime(), new GraphQLLocalTime())
                 .build()
                 .makeExecutableSchema();
     }
