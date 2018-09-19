@@ -79,7 +79,7 @@ public class PrebookDaoImpl implements PrebookDao {
         query.addScalar("customerName", StandardBasicTypes.STRING);
         query.addScalar("carrierName", StandardBasicTypes.STRING);
         query.addScalar("customerPoNumber", StandardBasicTypes.STRING);
-        query.addScalar("shipDate", StandardBasicTypes.DATE);
+        query.addScalar("shipDate", StandardBasicTypes.TIMESTAMP);
 
         return (Prebook) query.getSingleResult();
     }

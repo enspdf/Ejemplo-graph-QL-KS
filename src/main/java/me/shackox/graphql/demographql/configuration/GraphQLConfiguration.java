@@ -72,8 +72,7 @@ public class GraphQLConfiguration {
                         productQueryResolver, productMutationResolver,
                         prebookQueryResolver, prebookMutationResolver
                 )
-                //.scalars(new GraphQLDate(), new GraphQLLocalDate(), new GraphQLLocalDateTime(), new GraphQLLocalTime())
-                .scalars(Scalars.graphQLDate)
+                .scalars(new GraphQLDate(), new GraphQLLocalDate(), new GraphQLLocalDateTime(), new GraphQLLocalTime())
                 .build()
                 .makeExecutableSchema();
     }

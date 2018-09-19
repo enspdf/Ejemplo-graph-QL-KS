@@ -1,5 +1,6 @@
 package me.shackox.graphql.demographql.domain;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -8,13 +9,13 @@ public class Prebook {
     private String customerName;
     private String carrierName;
     private String customerPoNumber;
-    private Date shipDate;
+    private Timestamp shipDate;
     private List<PrebookItem> prebookItems;
 
     public Prebook() {
     }
 
-    public Prebook(Long id, String customerName, String carrierName, String customerPoNumber, Date shipDate, List<PrebookItem> prebookItems) {
+    public Prebook(Long id, String customerName, String carrierName, String customerPoNumber, Timestamp shipDate, List<PrebookItem> prebookItems) {
         this.id = id;
         this.customerName = customerName;
         this.carrierName = carrierName;
@@ -55,11 +56,11 @@ public class Prebook {
         this.customerPoNumber = customerPoNumber;
     }
 
-    public Date getShipDate() {
+    public Timestamp getShipDate() {
         return shipDate;
     }
 
-    public void setShipDate(Date shipDate) {
+    public void setShipDate(Timestamp shipDate) {
         this.shipDate = shipDate;
     }
 

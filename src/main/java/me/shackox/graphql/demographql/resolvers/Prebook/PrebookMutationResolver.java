@@ -12,8 +12,7 @@ public class PrebookMutationResolver implements GraphQLMutationResolver {
     private PrebookService prebookService;
 
     public Prebook createPrebookHeader (Prebook prebook) {
-        return prebook;
-        //return prebookService.createPrebookHeader(prebook);
+        return prebookService.createPrebookHeader(prebook);
     }
 
     public Prebook createPrebookWithItems (Prebook prebook) {
