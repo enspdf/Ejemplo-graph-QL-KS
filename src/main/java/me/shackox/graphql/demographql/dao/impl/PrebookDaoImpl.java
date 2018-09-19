@@ -20,7 +20,7 @@ public class PrebookDaoImpl implements PrebookDao {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Prebook> allPrebooksHeader() {
+    public List<Prebook> getAllPrebooks() {
         StringBuilder strQuery = new StringBuilder();
         strQuery.append(" SELECT ");
         strQuery.append(" id, customerName, carrierName, customerPoNumber, shipDate ");
@@ -37,12 +37,6 @@ public class PrebookDaoImpl implements PrebookDao {
         query.addScalar("shipDate", StandardBasicTypes.DATE);
 
         return query.getResultList();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Prebook> allPrebooksWithDetails() {
-        return null;
     }
 
     @Override
@@ -109,13 +103,7 @@ public class PrebookDaoImpl implements PrebookDao {
 
     @Override
     @Transactional
-    public Prebook updatePrebookHeader(Long prebookId, Prebook prebook) {
-        return null;
-    }
-
-    @Override
-    @Transactional
-    public Prebook updatePrebookWithItems(Long prebookId, Prebook prebook) {
+    public Prebook updatePrebook(Long prebookId, Prebook prebook) {
         return null;
     }
 

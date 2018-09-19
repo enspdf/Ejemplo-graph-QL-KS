@@ -13,11 +13,7 @@ public class PrebookQueryResolver implements GraphQLQueryResolver {
     @Autowired
     private PrebookService prebookService;
 
-    public List<Prebook> allPrebooksHeader() {
-        return null;
-    }
-
-    public List<Prebook> allPrebooksWithDetails() {
+    public List<Prebook> getAllPrebooks() {
         return null;
     }
 

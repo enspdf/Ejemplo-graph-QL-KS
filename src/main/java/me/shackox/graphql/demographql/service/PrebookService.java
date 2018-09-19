@@ -5,21 +5,15 @@ import me.shackox.graphql.demographql.domain.Prebook;
 import java.util.List;
 
 public interface PrebookService {
-    List<Prebook> allPrebooksHeader();
-
-    List<Prebook> allPrebooksWithDetails();
+    List<Prebook> getAllPrebooks();
 
     Long countAllPrebooks();
 
     Prebook getPrebookById(Long id);
 
-    Prebook createPrebookHeader(Prebook prebook);
+    Prebook createPrebook(Prebook prebook);
 
-    Prebook createPrebookWithItems(Prebook prebook);
-
-    Prebook updatePrebookHeader(Long prebookId, Prebook prebook);
-
-    Prebook updatePrebookWithItems(Long prebookId, Prebook prebook);
+    Prebook updatePrebook(Long prebookId, Prebook prebook);
 
     boolean deletePrebook(Long prebookId);
 }

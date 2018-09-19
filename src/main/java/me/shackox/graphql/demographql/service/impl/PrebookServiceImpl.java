@@ -5,6 +5,7 @@ import me.shackox.graphql.demographql.domain.Prebook;
 import me.shackox.graphql.demographql.domain.PrebookItem;
 import me.shackox.graphql.demographql.service.PrebookItemService;
 import me.shackox.graphql.demographql.service.PrebookService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,8 @@ public class PrebookServiceImpl implements PrebookService {
     private PrebookItemService prebookItemService;
 
     @Override
-    public List<Prebook> allPrebooksHeader() {
-        return prebookDao.allPrebooksHeader();
-    }
-
-    @Override
-    public List<Prebook> allPrebooksWithDetails() {
-        return prebookDao.allPrebooksWithDetails();
+    public List<Prebook> getAllPrebooks() {
+        return prebookDao.getAllPrebooks();
     }
 
     @Override
@@ -39,27 +35,22 @@ public class PrebookServiceImpl implements PrebookService {
     }
 
     @Override
-    public Prebook createPrebookHeader(Prebook prebook) {
+    public Prebook createPrebook(Prebook prebook) {
         Long prebookId = prebookDao.createPrebook(prebook);
+
+        if (CollectionUtils.isNotEmpty(prebook.getPrebookItems())) {
+            prebook.getPrebookItems().stream().forEach(prebookItem -> {
+                prebookItem.setPrebookId(prebookId);
+
+            });
+        }
+
         return prebookDao.getPrebookById(prebookId);
     }
 
     @Override
-    public Prebook createPrebookWithItems(Prebook prebook) {
-        Long prebookId = prebookDao.createPrebook(prebook);
-        Prebook prebookSaved = prebookDao.getPrebookById(prebookId);
-        // TODO
-        return prebookSaved;
-    }
-
-    @Override
-    public Prebook updatePrebookHeader(Long prebookId, Prebook prebook) {
-        return prebookDao.updatePrebookHeader(prebookId, prebook);
-    }
-
-    @Override
-    public Prebook updatePrebookWithItems(Long prebookId, Prebook prebook) {
-        return prebookDao.updatePrebookWithItems(prebookId, prebook);
+    public Prebook updatePrebook(Long prebookId, Prebook prebook) {
+        return prebookDao.updatePrebook(prebookId, prebook);
     }
 
     @Override

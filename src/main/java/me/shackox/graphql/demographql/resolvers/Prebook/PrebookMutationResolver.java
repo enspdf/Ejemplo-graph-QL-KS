@@ -11,19 +11,11 @@ public class PrebookMutationResolver implements GraphQLMutationResolver {
     @Autowired
     private PrebookService prebookService;
 
-    public Prebook createPrebookHeader (Prebook prebook) {
-        return prebookService.createPrebookHeader(prebook);
+    public Prebook createPrebook (Prebook prebook) {
+        return prebookService.createPrebook(prebook);
     }
 
-    public Prebook createPrebookWithItems (Prebook prebook) {
-        return prebook;
-    }
-
-    public Prebook updatePrebookHeader (Long prebookId, Prebook prebook) {
-        return prebook;
-    }
-
-    public Prebook updatePrebookWithItems (Long prebookId, Prebook prebook) {
+    public Prebook updatePrebook (Long prebookId, Prebook prebook) {
         return prebook;
     }
 

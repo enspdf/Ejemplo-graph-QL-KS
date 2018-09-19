@@ -48,10 +48,8 @@ input PrebookItemInput {
 
 # Type of Query that describes and show available methods to get data
 extend type Query {
-    # Method that returns a list of Prebooks created (Only Header)
-    allPrebooksHeader: [Prebook]!,
-    # Method that returns a list of Prebooks created (With details)
-    allPrebooksWithDetails: [Prebook]!,
+    # Method that returns a list of Prebooks created
+    getAllPrebooks: [Prebook]!,
     # Method that count all the created Prebooks
     countAllPrebooks: Long!,
     # Method that returns an specific Prebook
@@ -61,13 +59,9 @@ extend type Query {
 # Mutation type that describes and show available methods to mutate data
 extend type Mutation {
     # Method that obtains a Prebook header and create it
-    createPrebookHeader(input: PrebookInput): Prebook!,
-    # Method that obtains a Prebook header and items and create it
-    createPrebookWithItems(input: PrebookInput): Prebook!,
-    # Method that takes a prebook header and update it
-    updatePrebookHeader(id: ID!, input: PrebookInput): Prebook!,
-    # Method that takes a prebook with the items and update it
-    updatePrebookWithItems(id: ID!, input: PrebookInput): Prebook!,
+    createPrebook(input: PrebookInput): Prebook!,
+    # Method that takes a prebook and update it
+    updatePrebook(id: ID!, input: PrebookInput): Prebook!,
     # Method that takes an id of prebook and delete it (With items)
     deletePrebook(id: ID!): Boolean
 }
