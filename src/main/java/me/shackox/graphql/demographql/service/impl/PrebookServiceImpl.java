@@ -39,13 +39,22 @@ public class PrebookServiceImpl implements PrebookService {
         Long prebookId = prebookDao.createPrebook(prebook);
 
         if (CollectionUtils.isNotEmpty(prebook.getPrebookItems())) {
-            prebook.getPrebookItems().stream().forEach(prebookItem -> {
+            prebook.getPrebookItems().forEach(prebookItem -> {
                 prebookItem.setPrebookId(prebookId);
+                prebookItemService.createPrebookItem(prebookItem);
 
             });
         }
 
-        return prebookDao.getPrebookById(prebookId);
+        Prebook prebookCreated = prebookDao.getPrebookById(prebookId);
+
+        List<PrebookItem> prebookItemList = prebookItemService.getPrebookItemsByPrebookId(prebookId);
+
+        if (CollectionUtils.isNotEmpty(prebookItemList)) {
+            prebookCreated.setPrebookItems(prebookItemList);
+        }
+
+        return prebookCreated;
     }
 
     @Override

@@ -2,7 +2,7 @@
 
 -- changeset developer:03-Create-tblPrebookItem.sql
 CREATE TABLE tblPrebookItem (
-  id INT(11) UNSIGNED NOT NULL,
+  id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   prebookId INT(11) UNSIGNED NOT NULL,
   productId INT(11) UNSIGNED NOT NULL,
   vendorCode VARCHAR(50) NOT NULL,

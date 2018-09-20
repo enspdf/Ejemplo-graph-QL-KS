@@ -6,6 +6,8 @@ import me.shackox.graphql.demographql.service.PrebookItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PrebookItemServiceImpl implements PrebookItemService {
     @Autowired
@@ -13,11 +15,16 @@ public class PrebookItemServiceImpl implements PrebookItemService {
 
     @Override
     public PrebookItem getPrebookItemById(Long id) {
-        return null;
+        return prebookItemDao.getPrebookItemById(id);
     }
 
     @Override
-    public PrebookItem createPrebookItem(PrebookItem prebookItem) {
-        return null;
+    public List<PrebookItem> getPrebookItemsByPrebookId(Long prebookId) {
+        return prebookItemDao.getPrebookItemsByPrebookId(prebookId);
+    }
+
+    @Override
+    public Long createPrebookItem(PrebookItem prebookItem) {
+        return prebookItemDao.createPrebookItem(prebookItem);
     }
 }

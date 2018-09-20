@@ -20,8 +20,6 @@ type PrebookItem {
 
 # Input that describes the Prebook Input structure
 input PrebookItemInput {
-    # Id of the parent Prebook
-    prebookId: ID!,
     # The code of the vendor
     vendorCode: String!,
     # Id of the product

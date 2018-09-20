@@ -16,7 +16,7 @@ datasource:
   driver: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost:3306/graphQLExample?autoReconnect=true&useSSL=false
   username: root
-  password: vertical601
+  password:
 
 # Hibernate Configuration
 hibernate:
