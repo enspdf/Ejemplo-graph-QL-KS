@@ -16,10 +16,10 @@ public class PrebookMutationResolver implements GraphQLMutationResolver {
     }
 
     public Prebook updatePrebook (Long prebookId, Prebook prebook) {
-        return prebook;
+        return prebookService.updatePrebook(prebookId, prebook);
     }
 
     public boolean deletePrebook (Long prebookId) {
-        return false;
+        return prebookService.deletePrebook(prebookId);
     }
 }

@@ -13,7 +13,7 @@ public interface PrebookDao {
 
     Long createPrebook(Prebook prebook);
 
-    Prebook updatePrebook(Long prebookId, Prebook prebook);
+    void updatePrebook(Long prebookId, Prebook prebook);
 
     boolean deletePrebook(Long prebookId);
 }

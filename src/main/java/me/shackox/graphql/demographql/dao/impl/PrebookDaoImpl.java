@@ -34,7 +34,7 @@ public class PrebookDaoImpl implements PrebookDao {
         query.addScalar("customerName", StandardBasicTypes.STRING);
         query.addScalar("carrierName", StandardBasicTypes.STRING);
         query.addScalar("customerPoNumber", StandardBasicTypes.STRING);
-        query.addScalar("shipDate", StandardBasicTypes.DATE);
+        query.addScalar("shipDate", StandardBasicTypes.TIMESTAMP);
 
         return query.getResultList();
     }
@@ -103,8 +103,24 @@ public class PrebookDaoImpl implements PrebookDao {
 
     @Override
     @Transactional
-    public Prebook updatePrebook(Long prebookId, Prebook prebook) {
-        return null;
+    public void updatePrebook(Long prebookId, Prebook prebook) {
+        StringBuilder strQuery = new StringBuilder();
+        strQuery.append(" UPDATE ");
+        strQuery.append(" tblPrebook SET ");
+        strQuery.append(" customerName = :customerName, ");
+        strQuery.append(" carrierName = :carrierName, ");
+        strQuery.append(" customerPoNumber = :customerPoNumber, ");
+        strQuery.append(" shipDate = :shipDate ");
+        strQuery.append(" WHERE id = :prebookId ");
+
+        NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
+        query.setParameter("customerName", prebook.getCustomerName());
+        query.setParameter("carrierName", prebook.getCarrierName());
+        query.setParameter("customerPoNumber", prebook.getCustomerPoNumber());
+        query.setParameter("shipDate", prebook.getShipDate());
+        query.setParameter("prebookId", prebookId);
+
+        query.executeUpdate();
     }
 
     @Override

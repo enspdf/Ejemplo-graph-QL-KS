@@ -20,6 +20,8 @@ type PrebookItem {
 
 # Input that describes the Prebook Input structure
 input PrebookItemInput {
+    # Id of the parent Prebook
+    prebookId: ID,
     # The code of the vendor
     vendorCode: String!,
     # Id of the product
@@ -36,10 +38,18 @@ input PrebookItemInput {
 
 # Type of Query that describes and show available methods to get data
 extend type Query {
-
+    # Method that returns a list of prebookItems associated to a prebook
+    getPrebookItemsByPrebook(id: ID!): [PrebookItem]!,
+    # Method that return an specific prebookItem
+    getPrebookItemById(id: ID!): PrebookItem!
 }
 
 # Mutation type that describes and show available methods to mutate data
 extend type Mutation {
-
+    # Method to add new prebookItem to an existing Prebook
+    addPrebookItem(input: PrebookItemInput!): PrebookItem!,
+    # Method to update a prebookItem
+    updatePrebookItem(id: ID!, input: PrebookItemInput!): PrebookItem!,
+    # Method to delete a prebookItem
+    deletePrebookItem(id: ID!): Boolean
 }

@@ -13,7 +13,7 @@ public interface ProductService {
 
     boolean deleteProduct(Long id);
 
-    Product createProduct(Product product);
+    Product createProduct(String productDescription);
 
-    Product updateProduct(Long id, Product product);
+    Product updateProduct(Long id, String productDescription);
 }

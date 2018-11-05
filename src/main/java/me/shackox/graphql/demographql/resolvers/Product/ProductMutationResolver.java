@@ -11,12 +11,12 @@ public class ProductMutationResolver implements GraphQLMutationResolver {
     @Autowired
     private ProductService productService;
 
-    public Product createProduct(Product product) {
-        return productService.createProduct(product);
+    public Product createProduct(String productDescription) {
+        return productService.createProduct(productDescription);
     }
 
-    public Product updateProduct(Long id, Product product) {
-        return productService.updateProduct(id, product);
+    public Product updateProduct(Long id, String productDescription) {
+        return productService.updateProduct(id, productDescription);
     }
 
     public boolean deleteProduct(Long id) {

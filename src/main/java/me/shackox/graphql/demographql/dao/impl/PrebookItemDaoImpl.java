@@ -95,4 +95,47 @@ public class PrebookItemDaoImpl implements PrebookItemDao {
 
         return lastInsertedId.longValue();
     }
+
+    @Override
+    @Transactional
+    public void updatePrebookItem(Long prebookItemId, PrebookItem prebookItem) {
+        StringBuilder strQuery = new StringBuilder();
+        strQuery.append(" UPDATE ");
+        strQuery.append(" tblPrebookItem SET ");
+        strQuery.append(" productId = :productId, ");
+        strQuery.append(" vendorCode = :vendorCode, ");
+        strQuery.append(" boxType = :boxType, ");
+        strQuery.append(" unitType = :unitType, ");
+        strQuery.append(" markCode = :markCode, ");
+        strQuery.append(" unitPrice = :unitPrice ");
+        strQuery.append(" WHERE id = :prebookItemId ");
+
+        NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
+        query.setParameter("productId", prebookItem.getProductId());
+        query.setParameter("vendorCode", prebookItem.getVendorCode());
+        query.setParameter("boxType", prebookItem.getBoxType());
+        query.setParameter("unitType", prebookItem.getUnitType());
+        query.setParameter("markCode", prebookItem.getMarkCode());
+        query.setParameter("unitPrice", prebookItem.getUnitPrice());
+        query.setParameter("prebookItemId", prebookItemId);
+
+        query.executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public boolean deletePrebookItem(Long prebookItemId) {
+        StringBuilder strQuery = new StringBuilder();
+        strQuery.append(" DELETE ");
+        strQuery.append(" FROM ");
+        strQuery.append(" tblPrebookItem ");
+        strQuery.append(" WHERE ");
+        strQuery.append(" id = :prebookItemId ");
+
+        NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
+        query.setParameter("prebookItemId", prebookItemId);
+
+        int resultQuery = query.executeUpdate();
+        return resultQuery == 1;
+    }
 }

@@ -1,7 +1,6 @@
 package me.shackox.graphql.demographql.domain;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 public class Prebook {

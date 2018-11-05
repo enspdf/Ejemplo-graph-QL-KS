@@ -10,4 +10,8 @@ public interface PrebookItemDao {
     List<PrebookItem> getPrebookItemsByPrebookId(Long prebookId);
 
     Long createPrebookItem(PrebookItem prebookItem);
+
+    void updatePrebookItem(Long prebookItemId, PrebookItem prebookItem);
+
+    boolean deletePrebookItem(Long prebookItemId);
 }

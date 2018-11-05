@@ -27,4 +27,15 @@ public class PrebookItemServiceImpl implements PrebookItemService {
     public Long createPrebookItem(PrebookItem prebookItem) {
         return prebookItemDao.createPrebookItem(prebookItem);
     }
+
+    @Override
+    public PrebookItem updatePrebookItem(Long prebookItemId, PrebookItem prebookItem) {
+        prebookItemDao.updatePrebookItem(prebookItemId, prebookItem);
+        return getPrebookItemById(prebookItemId);
+    }
+
+    @Override
+    public boolean deletePrebookItem(Long prebookItemId) {
+        return prebookItemDao.deletePrebookItem(prebookItemId);
+    }
 }

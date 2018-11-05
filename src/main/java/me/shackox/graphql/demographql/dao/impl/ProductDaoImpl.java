@@ -2,6 +2,8 @@ package me.shackox.graphql.demographql.dao.impl;
 
 import me.shackox.graphql.demographql.dao.ProductDao;
 import me.shackox.graphql.demographql.domain.Product;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
@@ -9,6 +11,7 @@ import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -23,7 +26,7 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> getAllProducts() {
         StringBuilder strQuery = new StringBuilder();
         strQuery.append(" SELECT ");
-        strQuery.append(" id, description, boxes, bunches, stemsBunch, unitCost ");
+        strQuery.append(" id, description ");
         strQuery.append(" FROM  ");
         strQuery.append(" tblProduct ");
 
@@ -32,10 +35,6 @@ public class ProductDaoImpl implements ProductDao {
 
         query.addScalar("id", StandardBasicTypes.LONG);
         query.addScalar("description", StandardBasicTypes.STRING);
-        query.addScalar("boxes", StandardBasicTypes.INTEGER);
-        query.addScalar("bunches", StandardBasicTypes.INTEGER);
-        query.addScalar("stemsBunch", StandardBasicTypes.INTEGER);
-        query.addScalar("unitCost", StandardBasicTypes.DOUBLE);
 
         return query.getResultList();
     }
@@ -61,7 +60,7 @@ public class ProductDaoImpl implements ProductDao {
     public Product getProductById(Long id) {
         StringBuilder strQuery = new StringBuilder();
         strQuery.append(" SELECT ");
-        strQuery.append(" id, description, boxes, bunches, stemsBunch, unitCost ");
+        strQuery.append(" id, description ");
         strQuery.append(" FROM  ");
         strQuery.append(" tblProduct ");
         strQuery.append(" WHERE ");
@@ -73,10 +72,6 @@ public class ProductDaoImpl implements ProductDao {
 
         query.addScalar("id", StandardBasicTypes.LONG);
         query.addScalar("description", StandardBasicTypes.STRING);
-        query.addScalar("boxes", StandardBasicTypes.INTEGER);
-        query.addScalar("bunches", StandardBasicTypes.INTEGER);
-        query.addScalar("stemsBunch", StandardBasicTypes.INTEGER);
-        query.addScalar("unitCost", StandardBasicTypes.DOUBLE);
 
         return (Product) query.uniqueResult();
     }
@@ -100,20 +95,18 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     @Transactional
-    public Long createProduct(Product product) {
+    public Long createProduct(String productDescription) {
+        Assert.isTrue(StringUtils.isNotBlank(productDescription), "Product Description is required");
+
         StringBuilder strQuery = new StringBuilder();
         strQuery.append(" INSERT INTO ");
         strQuery.append(" tblProduct ");
-        strQuery.append(" (description, boxes, bunches, stemsBunch, unitCost) ");
+        strQuery.append(" (description) ");
         strQuery.append(" VALUES ");
-        strQuery.append(" (:description, :boxes, :bunches, :stemsBunch, :unitCost) ");
+        strQuery.append(" (:description) ");
 
         NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
-        query.setParameter("description", product.getDescription());
-        query.setParameter("boxes", product.getBoxes());
-        query.setParameter("bunches", product.getBunches());
-        query.setParameter("stemsBunch", product.getStemsBunch());
-        query.setParameter("unitCost", product.getUnitCost());
+        query.setParameter("description", productDescription);
 
         query.executeUpdate();
 
@@ -124,23 +117,18 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     @Transactional
-    public void updateProduct(Long id, Product product) {
+    public void updateProduct(Long id, String productDescription) {
+        Assert.isTrue(id != null && id > NumberUtils.INTEGER_ZERO, "Product Id is required");
+        Assert.isTrue(StringUtils.isNotBlank(productDescription), "Product Description is required");
+
         StringBuilder strQuery = new StringBuilder();
         strQuery.append(" UPDATE ");
         strQuery.append(" tblProduct SET ");
-        strQuery.append(" description = :description, ");
-        strQuery.append(" boxes = :boxes, ");
-        strQuery.append(" bunches = :bunches, ");
-        strQuery.append(" stemsBunch = :stemsBunch, ");
-        strQuery.append(" unitCost = :unitCost ");
+        strQuery.append(" description = :description ");
         strQuery.append(" WHERE id = :id ");
 
         NativeQuery query = sessionFactory.getCurrentSession().createNativeQuery(strQuery.toString());
-        query.setParameter("description", product.getDescription());
-        query.setParameter("boxes", product.getBoxes());
-        query.setParameter("bunches", product.getBunches());
-        query.setParameter("stemsBunch", product.getStemsBunch());
-        query.setParameter("unitCost", product.getUnitCost());
+        query.setParameter("description", productDescription);
         query.setParameter("id", id);
 
         query.executeUpdate();

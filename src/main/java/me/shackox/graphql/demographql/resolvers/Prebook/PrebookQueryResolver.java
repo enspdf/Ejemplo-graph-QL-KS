@@ -14,14 +14,14 @@ public class PrebookQueryResolver implements GraphQLQueryResolver {
     private PrebookService prebookService;
 
     public List<Prebook> getAllPrebooks() {
-        return null;
+        return prebookService.getAllPrebooks();
     }
 
     public Long countAllPrebooks() {
-        return 0L;
+        return prebookService.countAllPrebooks();
     }
 
     public Prebook getPrebookById(Long id) {
-        return null;
+        return prebookService.getPrebookById(id);
     }
 }

@@ -13,7 +13,7 @@ public interface ProductDao {
 
     boolean deleteProduct(Long id);
 
-    Long createProduct(Product product);
+    Long createProduct(String productDescription);
 
-    void updateProduct(Long id, Product product);
+    void updateProduct(Long id, String productDescription);
 }

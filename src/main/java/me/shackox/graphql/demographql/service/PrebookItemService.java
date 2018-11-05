@@ -10,4 +10,8 @@ public interface PrebookItemService {
     List<PrebookItem> getPrebookItemsByPrebookId(Long prebookId);
 
     Long createPrebookItem(PrebookItem prebookItem);
+
+    PrebookItem updatePrebookItem(Long prebookItemId, PrebookItem prebookItem);
+
+    boolean deletePrebookItem(Long prebookItemId);
 }

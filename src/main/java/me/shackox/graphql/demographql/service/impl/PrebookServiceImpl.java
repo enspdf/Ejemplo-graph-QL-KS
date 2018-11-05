@@ -9,6 +9,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -59,15 +60,17 @@ public class PrebookServiceImpl implements PrebookService {
 
     @Override
     public Prebook updatePrebook(Long prebookId, Prebook prebook) {
-        return prebookDao.updatePrebook(prebookId, prebook);
+        prebookDao.updatePrebook(prebookId, prebook);
+        return getPrebookById(prebookId);
     }
 
     @Override
     public boolean deletePrebook(Long prebookId) {
+        List<PrebookItem> prebookItemList = new ArrayList<>();
+        prebookItemList = prebookItemService.getPrebookItemsByPrebookId(prebookId);
+
+        prebookItemList.forEach(prebookItem -> prebookItemService.deletePrebookItem(prebookItem.getId()));
+
         return prebookDao.deletePrebook(prebookId);
-    }
-
-    private void processPrebookItems (List<PrebookItem> prebookItems) {
-
     }
 }

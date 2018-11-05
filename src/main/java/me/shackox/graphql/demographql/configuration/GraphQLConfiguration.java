@@ -12,9 +12,10 @@ import graphql.servlet.GraphQLErrorHandler;
 import me.shackox.graphql.demographql.handler.GraphQLErrorAdapter;
 import me.shackox.graphql.demographql.resolvers.Prebook.PrebookMutationResolver;
 import me.shackox.graphql.demographql.resolvers.Prebook.PrebookQueryResolver;
+import me.shackox.graphql.demographql.resolvers.PrebookItem.PrebookItemMutationResolver;
+import me.shackox.graphql.demographql.resolvers.PrebookItem.PrebookItemQueryResolver;
 import me.shackox.graphql.demographql.resolvers.Product.ProductMutationResolver;
 import me.shackox.graphql.demographql.resolvers.Product.ProductQueryResolver;
-import me.shackox.graphql.demographql.scalars.Scalars;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +37,12 @@ public class GraphQLConfiguration {
 
     @Autowired
     private PrebookMutationResolver prebookMutationResolver;
+
+    @Autowired
+    private PrebookItemQueryResolver prebookItemQueryResolver;
+
+    @Autowired
+    private PrebookItemMutationResolver prebookItemMutationResolver;
 
     @Bean
     public GraphQLErrorHandler errorHandler() {
@@ -70,7 +77,8 @@ public class GraphQLConfiguration {
                 .files("graphql/product.graphqls", "graphql/prebook.graphqls", "graphql/prebookItem.graphqls")
                 .resolvers(
                         productQueryResolver, productMutationResolver,
-                        prebookQueryResolver, prebookMutationResolver
+                        prebookQueryResolver, prebookMutationResolver,
+                        prebookItemQueryResolver, prebookItemMutationResolver
                 )
                 .scalars(new GraphQLDate(), new GraphQLLocalDate(), new GraphQLLocalDateTime(), new GraphQLLocalTime())
                 .build()
@@ -95,5 +103,15 @@ public class GraphQLConfiguration {
     @Bean
     public PrebookMutationResolver prebookMutationResolver() {
         return new PrebookMutationResolver();
+    }
+
+    @Bean
+    public PrebookItemQueryResolver prebookItemQueryResolver() {
+        return new PrebookItemQueryResolver();
+    }
+
+    @Bean
+    public PrebookItemMutationResolver prebookItemMutationResolver() {
+        return new PrebookItemMutationResolver();
     }
 }

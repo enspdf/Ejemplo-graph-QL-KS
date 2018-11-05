@@ -3,29 +3,7 @@ type Product {
     # Id of the product
     id: ID!,
     # Description of the product
-    description: String!,
-    # Boxes of the product
-    boxes: Int!,
-    # Bunches of the product
-    bunches: Int!,
-    # Stems/Bunch of the product
-    stemsBunch: Int!,
-    # Unit Cost of the product
-    unitCost: Float!
-}
-
-# Input that describes the Product Input structure
-input ProductInput {
-    # Description of the product
-    description: String,
-    # Boxes of the product
-    boxes: Int,
-    # Bunches of the product
-    bunches: Int,
-    # Stems/Bunch of the product
-    stemsBunch: Int,
-    # Unit Cost of the product
-    unitCost: Float
+    description: String!
 }
 
 # Type of Query that describes and show available methods to get data
@@ -41,9 +19,9 @@ type Query {
 # Mutation type that describes and show available methods to mutate data
 type Mutation {
     # Method that create a product and return it
-    createProduct(input: ProductInput): Product!
+    createProduct(description: String): Product!
     # Method that takes a product and update it
-    updateProduct(id: ID!, input: ProductInput): Product!
+    updateProduct(id: ID!, description: String): Product!
     # Method that takes an id of a product and delete it
     deleteProduct(id: ID!): Boolean
 }

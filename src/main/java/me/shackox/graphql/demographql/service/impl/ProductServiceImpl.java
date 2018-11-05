@@ -34,14 +34,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product createProduct(Product product) {
-        Long productId = productDao.createProduct(product);
+    public Product createProduct(String productDescription) {
+        Long productId = productDao.createProduct(productDescription);
         return getProductById(productId);
     }
 
     @Override
-    public Product updateProduct(Long id, Product product) {
-        productDao.updateProduct(id, product);
+    public Product updateProduct(Long id, String productDescription) {
+        productDao.updateProduct(id, productDescription);
         return productDao.getProductById(id);
     }
 }
